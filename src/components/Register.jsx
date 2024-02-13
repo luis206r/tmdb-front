@@ -33,12 +33,12 @@ export const Register = () => {
           .post("https://tmdb-35y0.onrender.com/api/login", {
             email: email.value,
             password: password.value,
-          })
+          },{ withCredentials: true })
           .then((res) => {
             if (res.data.name) {
               dispatch(setUser({ ...res.data, favorites: [] }));
               return axios
-                .get(`https://tmdb-35y0.onrender.com/api/userfavorites/${res.data.user_id}`)
+                .get(`https://tmdb-35y0.onrender.com/api/userfavorites/${res.data.user_id}`,{},{ withCredentials: true })
                 .then((res) => {
                   dispatch(setFavorites(res.data));
                 });

@@ -29,7 +29,7 @@ export const Login = () => {
           //
           dispatch(setUser({ ...res.data.user, favorites: [] }));
           return axios
-            .get(`https://tmdb-35y0.onrender.com/api/userfavorites/${res.data.user.user_id}`)
+            .get(`https://tmdb-35y0.onrender.com/api/userfavorites/${res.data.user.user_id}`,{},{ withCredentials: true })
             .then((res) => {
               dispatch(setFavorites(res.data));
             });

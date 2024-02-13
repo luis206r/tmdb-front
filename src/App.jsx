@@ -18,10 +18,10 @@ export const App = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   useEffect(() => {
-    axios.get("http://localhost:3001/api/apikeys").then((res) => dispatch(setKeys(res.data)));
+    axios.get("https://tmdb-35y0.onrender.com/api/apikeys",{},{ withCredentials: true }).then((res) => dispatch(setKeys(res.data)));
 
     axios //favorites
-      .get("http://localhost:3001/api/me", {
+      .get("https://tmdb-35y0.onrender.com/api/me", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('userToken')}`,
         }
@@ -30,7 +30,7 @@ export const App = () => {
         if (res.data.name) {
           dispatch(setUser({ ...res.data, favorites: [] }));
           axios
-            .get(`http://localhost:3001/api/userfavorites/${res.data.user_id}`)
+            .get(`https://tmdb-35y0.onrender.com/api/userfavorites/${res.data.user_id}`,{},{ withCredentials: true })
             .then((res) => {
               dispatch(setFavorites(res.data));
             });

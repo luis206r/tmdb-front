@@ -20,7 +20,7 @@ export const Newpass = () => {
         .put("https://tmdb-35y0.onrender.com/api/user/changepassword", {
           email: user.email,
           password: password.value,
-        })
+        },{ withCredentials: true })
         .then((res) => {
           if (typeof res.data == "string") {
             message.error("La contraseña debe ser nueva");

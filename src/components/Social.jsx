@@ -15,16 +15,16 @@ export const Social = () => {
       e.preventDefault();
       if (searchValue != "") {
         axios
-          .get(`https://tmdb-35y0.onrender.com/api/allusers/search/${searchValue}`)
+          .get(`https://tmdb-35y0.onrender.com/api/allusers/search/${searchValue}`,{},{ withCredentials: true })
           .then((res) => setUsers(res.data));
       } else {
-        axios.get("https://tmdb-35y0.onrender.com/api/allusers").then((res) => setUsers(res.data));
+        axios.get("https://tmdb-35y0.onrender.com/api/allusers",{},{ withCredentials: true }).then((res) => setUsers(res.data));
       }
     }
   };
 
   useEffect(() => {
-    axios.get("https://tmdb-35y0.onrender.com/api/allusers").then((res) => setUsers(res.data));
+    axios.get("https://tmdb-35y0.onrender.com/api/allusers",{},{ withCredentials: true }).then((res) => setUsers(res.data));
   }, []);
 
   return (
