@@ -21,7 +21,11 @@ export const App = () => {
     axios.get("http://localhost:3001/api/apikeys").then((res) => dispatch(setKeys(res.data)));
 
     axios //favorites
-      .get("http://localhost:3001/api/me", { withCredentials: true })
+      .get("http://localhost:3001/api/me", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('userToken')}`,
+        }
+      }, { withCredentials: true })
       .then((res) => {
         if (res.data.name) {
           dispatch(setUser({ ...res.data, favorites: [] }));

@@ -11,8 +11,9 @@ const Navbar = () => {
     e.preventDefault();
     dispatch(clearUser());
     return axios
-      .post("http://localhost:3001/api/logout")
+      .post("http://localhost:3001/api/logout",{},{withCredentials:true})
       .then(() => {
+        localStorage.removeItem('userToken');
         navigate("/login");
       })
       .catch(() => console.error("Error al salir de la cuenta"));

@@ -23,10 +23,13 @@ export const Login = () => {
         password: password.value,
       },{ withCredentials: true })
       .then((res) => {
-        if (res.data.name) {
-          dispatch(setUser({ ...res.data, favorites: [] }));
+        if (res.data.user.name) {
+          //seteo jwt a localstorage 
+          localStorage.setItem('userToken',res.data.token);
+          //
+          dispatch(setUser({ ...res.data.user, favorites: [] }));
           return axios
-            .get(`http://localhost:3001/api/userfavorites/${res.data.user_id}`)
+            .get(`http://localhost:3001/api/userfavorites/${res.data.user.user_id}`)
             .then((res) => {
               dispatch(setFavorites(res.data));
             });
