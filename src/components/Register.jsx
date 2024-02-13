@@ -27,30 +27,25 @@ export const Register = () => {
       })
       .then((res) => res.data)
       .then((createdUser) => setUser(createdUser))
-      .then(() => {
-        message.success("Usuario creado");
-        return axios
-          .post("https://tmdb-35y0.onrender.com/api/login", {
-            email: email.value,
-            password: password.value,
-          },{ withCredentials: true })
-          .then((res) => {
-            if (res.data.name) {
-              dispatch(setUser({ ...res.data, favorites: [] }));
-              return axios
-                .get(`https://tmdb-35y0.onrender.com/api/userfavorites/${res.data.user_id}`,{},{ withCredentials: true })
-                .then((res) => {
-                  dispatch(setFavorites(res.data));
-                });
-            }
-          })
-          .then(() => navigate("/home"))
-          .catch(() => console.error("Algo salió mal..."));
-      })
-      .catch(() =>
-        console.error("Necesitas loguearte para obtener tu usuario.")
-      );
-  };
+      .then(() => message.success("Usuario creado"))
+        // return axios
+        //   .post("https://tmdb-35y0.onrender.com/api/login", {
+        //     email: email.value,
+        //     password: password.value,
+        //   },{ withCredentials: true })
+        //   .then((res) => {
+        //     if (res.data.name) {
+        //       dispatch(setUser({ ...res.data, favorites: [] }));
+        //       return axios
+        //         .get(`https://tmdb-35y0.onrender.com/api/userfavorites/${res.data.user_id}`,{},{ withCredentials: true })
+        //         .then((res) => {
+        //           dispatch(setFavorites(res.data));
+        //         });
+        //     }
+        //   })
+        .then(() => navigate("/home"))
+        .catch(() => console.error("Algo salió mal..."));
+      };
 
   return (
     <section class="hero is-fullheight">
