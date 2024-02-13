@@ -17,7 +17,7 @@ export const Newpass = () => {
     e.preventDefault();
     if (password.value != "" && password.value == repPassword.value) {
       return axios
-        .put("http://localhost:3001/api/user/changepassword", {
+        .put("https://tmdb-35y0.onrender.com/api/user/changepassword", {
           email: user.email,
           password: password.value,
         })

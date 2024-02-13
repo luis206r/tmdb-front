@@ -18,7 +18,7 @@ export const Login = () => {
     e.preventDefault();
 
     return axios
-      .post("http://localhost:3001/api/login", {
+      .post("https://tmdb-35y0.onrender.com/api/login", {
         email: email.value,
         password: password.value,
       },{ withCredentials: true })
@@ -29,7 +29,7 @@ export const Login = () => {
           //
           dispatch(setUser({ ...res.data.user, favorites: [] }));
           return axios
-            .get(`http://localhost:3001/api/userfavorites/${res.data.user.user_id}`)
+            .get(`https://tmdb-35y0.onrender.com/api/userfavorites/${res.data.user.user_id}`)
             .then((res) => {
               dispatch(setFavorites(res.data));
             });

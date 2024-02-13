@@ -22,7 +22,7 @@ export const Sendcode = () => {
       setIsLoading(true);
       e.preventDefault();
       axios
-        .put("http://localhost:3001/api/user/sendcode", { userMail: email.value })
+        .put("https://tmdb-35y0.onrender.com/api/user/sendcode", { userMail: email.value })
         .then((res) => {
           setMailCode(res.data);
         })

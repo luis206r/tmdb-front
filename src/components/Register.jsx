@@ -19,7 +19,7 @@ export const Register = () => {
   const handleSubmit = function (e) {
     e.preventDefault();
     return axios
-      .post("http://localhost:3001/api/register", {
+      .post("https://tmdb-35y0.onrender.com/api/register", {
         name: name.value,
         lastname: lastName.value,
         email: email.value,
@@ -30,7 +30,7 @@ export const Register = () => {
       .then(() => {
         message.success("Usuario creado");
         return axios
-          .post("http://localhost:3001/api/login", {
+          .post("https://tmdb-35y0.onrender.com/api/login", {
             email: email.value,
             password: password.value,
           })
@@ -38,7 +38,7 @@ export const Register = () => {
             if (res.data.name) {
               dispatch(setUser({ ...res.data, favorites: [] }));
               return axios
-                .get(`http://localhost:3001/api/userfavorites/${res.data.user_id}`)
+                .get(`https://tmdb-35y0.onrender.com/api/userfavorites/${res.data.user_id}`)
                 .then((res) => {
                   dispatch(setFavorites(res.data));
                 });

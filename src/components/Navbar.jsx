@@ -11,7 +11,7 @@ const Navbar = () => {
     e.preventDefault();
     dispatch(clearUser());
     return axios
-      .post("http://localhost:3001/api/logout",{},{withCredentials:true})
+      .post("https://tmdb-35y0.onrender.com/api/logout",{},{withCredentials:true})
       .then(() => {
         localStorage.removeItem('userToken');
         navigate("/login");

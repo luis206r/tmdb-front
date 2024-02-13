@@ -14,9 +14,9 @@ export const Profile = () => {
       setUser(userGlobal);
     }
     if (id != undefined) {
-      axios.get(`http://localhost:3001/api/user/${id}`).then((res) => {
+      axios.get(`https://tmdb-35y0.onrender.com/api/user/${id}`).then((res) => {
         const userData = res.data;
-        axios.get(`http://localhost:3001/api/userfavorites/${id}`).then((resFavorites) => {
+        axios.get(`https://tmdb-35y0.onrender.com/api/userfavorites/${id}`).then((resFavorites) => {
           const userWithFavorites = {
             ...userData,
             favorites: resFavorites.data,
