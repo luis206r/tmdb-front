@@ -73,17 +73,17 @@ export const Info = () => {
     e.preventDefault();
     if (!contentIsInFavorites) {
       return axios
-        .post(`http://localhost:3001/api/addfavorites/${user.user_id}`, {
+        .post(`https://tmdb-35y0.onrender.com/api/addfavorites/${user.user_id}`, {
           type: type,
           type_id: +id,
           title: type == "movie" ? info.title : info.name,
           poster_path: info.poster_path,
           release_date:
             type == "movie" ? info.release_date : info.first_air_date,
-        })
+        } , {withCredentials:true})
         .then(() => {
           return axios
-            .get(`http://localhost:3001/api/userfavorites/${user.user_id}`)
+            .get(`https://tmdb-35y0.onrender.com/api/userfavorites/${user.user_id}`,{},{withCredentials:true})
             .then((res) => dispatch(setFavorites(res.data)))
             .then(() => {
               setContentIsInFavorites(true);
@@ -96,13 +96,13 @@ export const Info = () => {
         });
     } else if (contentIsInFavorites) {
       return axios
-        .post(`http://localhost:3001/api/removefavorites/${user.user_id}`, {
+        .post(`https://tmdb-35y0.onrender.com/api/removefavorites/${user.user_id}`, {
           type: type,
           type_id: +id,
-        })
+        }, {withCredentials:true})
         .then(() => {
           return axios
-            .get(`http://localhost:3001/api/userfavorites/${user.user_id}`)
+            .get(`https://tmdb-35y0.onrender.com/api/userfavorites/${user.user_id}`,{},{withCredentials:true})
             .then((res) => dispatch(setFavorites(res.data)))
             .then(() => {
               setContentIsInFavorites(false);
