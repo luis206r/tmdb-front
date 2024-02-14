@@ -43,7 +43,7 @@ export const Register = () => {
         //         });
         //     }
         //   })
-        .then(() => navigate("/home"))
+        .then(() => navigate("/login"))
         .catch(() => console.error("Algo salió mal..."));
       };
 
